@@ -1,0 +1,32 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 2,
+  "name": "rbl/pixel-art",
+  "version": "1.0.0",
+  "title": "Pixel art",
+  "category": "widgets",
+  "icon": "admin-site",
+  "description": "Block rendering pixel art.",
+  "usesContext": [
+    "postId"
+  ],
+  "keywords": [
+    "country",
+    "card"
+  ],
+  "supports": {
+    "align": true
+  },
+  "attributes": {
+    "dummy": {
+      "type": "string",
+      "source": "text",
+      "default": "",
+      "selector": ".rbl-pixel"
+    }
+  },
+  "textdomain": "rbl-pixel-art",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css"
+}

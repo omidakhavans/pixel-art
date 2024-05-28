@@ -1,0 +1,98 @@
+{
+  "root": true,
+  "extends": [
+    "plugin:@wordpress/eslint-plugin/i18n",
+    "eslint:recommended",
+    "plugin:import/recommended",
+    "plugin:eslint-comments/recommended",
+    "plugin:react/recommended",
+    "plugin:jsdoc/recommended",
+    "plugin:@wordpress/eslint-plugin/recommended-with-formatting",
+    "plugin:react-hooks/recommended"
+  ],
+  "rules": {
+    "camelcase": [
+      "error",
+      {
+        "properties": "never"
+      }
+    ],
+    "lines-around-comment": "off",
+    "vars-on-top": "warn",
+    "complexity": [
+      "error",
+      {
+        "max": 20
+      }
+    ],
+    "default-case": "error",
+    "guard-for-in": "error",
+    "no-extra-bind": "error",
+    "no-extra-label": "error",
+    "no-floating-decimal": "error",
+    "no-implicit-coercion": "error",
+    "no-implicit-globals": "error",
+    "no-implied-eval": "error",
+    "no-loop-func": "error",
+    "no-new": "error",
+    "no-new-func": "error",
+    "no-new-wrappers": "error",
+    "no-restricted-properties": "error",
+    "no-return-assign": "error",
+    "no-return-await": "error",
+    "no-sequences": "error",
+    "no-shadow": "error",
+    "no-template-curly-in-string": "error",
+    "no-throw-literal": "error",
+    "no-unmodified-loop-condition": "error",
+    "no-unused-vars": [
+      "error",
+      {
+        "ignoreRestSiblings": true
+      }
+    ],
+    "no-useless-call": "error",
+    "no-useless-concat": "error",
+    "prefer-object-spread": "error",
+    "prefer-promise-reject-errors": "error",
+    "prefer-rest-params": "error",
+    "prefer-spread": "error",
+    "yoda": "off",
+    "no-var": "off",
+    "import/order": [
+      "error",
+      {
+        "groups": [
+          "builtin",
+          [
+            "external",
+            "unknown"
+          ],
+          "internal",
+          "parent",
+          "sibling",
+          "index"
+        ]
+      }
+    ],
+    "jsdoc/check-indentation": "error",
+    "react/no-array-index-key": "warn",
+    "react/prop-types": "off",
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": [
+      "error",
+      {
+        "additionalHooks": "useSelect"
+      }
+    ],
+    "@wordpress/dependency-group": "error",
+    "@wordpress/react-no-unsafe-timeout": "error",
+    "@wordpress/i18n-text-domain": [
+      "error",
+      {
+        "allowedTextDomain": "xwp-country-card"
+      }
+    ],
+    "@wordpress/valid-sprintf": "error"
+  }
+}
