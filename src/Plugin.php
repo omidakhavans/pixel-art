@@ -10,6 +10,7 @@ namespace RBL\Pixel_Art;
 
 use RBL\Pixel_Art\Interfaces\Initializer;
 use RBL\Pixel_Art\Block\PixelArt;
+use RBL\Pixel_Art\Admin\Settings;
 
 /**
  * Class Plugin.
@@ -28,6 +29,7 @@ class Plugin {
 	 * @var array<mixed>
 	 */
 	const INITIALIZER = array(
+		'admin.settings' => Settings::class,
 		'pixel.art.block' => PixelArt::class,
 	);
 

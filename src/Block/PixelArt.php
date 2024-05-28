@@ -30,6 +30,6 @@ class PixelArt implements Initializer {
 	 * @return void
 	 */
 	public static function register_block(): void {
-		register_block_type( PIXEL_ART_PATH . '/build/Modules/Block' );
+		// register_block_type( PIXEL_ART_PATH . '/build/Modules/Block' );
 	}
 }
