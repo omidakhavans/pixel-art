@@ -37,6 +37,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 define( 'PIXEL_ART_PATH', plugin_dir_path( __FILE__ ) );
+define( 'PIXEL_ART_URL', plugin_dir_url( __FILE__ ) );
 
 // Load the Composer autoloader.
 require_once PIXEL_ART_PATH . '/vendor/autoload.php';
