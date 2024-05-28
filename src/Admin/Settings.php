@@ -30,8 +30,8 @@ final class Settings implements Initializer {
 	 * Enqueue admin scripts and styles.
 	 */
 	public static function enqueue_admin_scripts() {
-		wp_enqueue_script( 'pixel-art-admin-script', plugin_dir_url( __FILE__ ) . 'build/admin.js', array( 'wp-element' ), null, true );
-		wp_enqueue_style( 'pixel-art-admin-style', plugin_dir_url( __FILE__ ) . 'admin/style.css' );
+		wp_enqueue_script( 'pixel-art-admin-script', PIXEL_ART_URL . 'build/admin.js', array( 'wp-element' ), null, true );
+		wp_enqueue_style( 'pixel-art-admin-style', PIXEL_ART_URL . 'assets/admin.css' );
 	}
 
 	/**
