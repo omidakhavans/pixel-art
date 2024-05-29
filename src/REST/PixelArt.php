@@ -65,7 +65,13 @@ class PixelArt extends Base {
 	 */
 	public function save_pixel_art( $request ) {
 		$pixels = $request->get_json_params();
+
+		if ( ! $pixels ) {
+			return new WP_Error( 'invalid_payload', __( 'Invalid payload', 'rbl-pixel-art' ), array( 'status' => 400 ) );
+		}
+
 		update_option( 'pad_pixel_art', $pixels );
+
 		return rest_ensure_response( __( 'Pixel art saved', 'rbl-pixel-art' ) );
 	}
 
