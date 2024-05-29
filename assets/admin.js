@@ -1,4 +1,8 @@
-import { createRoot, useState } from '@wordpress/element';
+import { createRoot, useState, useCallback, useEffect } from '@wordpress/element';
+import { useSelect } from '@wordpress/data';
+import store from './util'; // Adjust the path as needed
+import apiFetch from '@wordpress/api-fetch';
+import { addQueryArgs } from '@wordpress/url';
 
 const colors = ['#000000', '#FFFFFF', '#FF0000', '#00FF00', '#0000FF', '#FFFF00', '#FF00FF', '#00FFFF', 'transparent'];
 
@@ -7,12 +11,28 @@ const PixelArtAdmin = () => {
     const [pixels, setPixels] = useState(Array(16 * 16).fill('transparent'));
     const [isSaved, setIsSaved] = useState(true);
 
-    const handlePixelClick = (index) => {
+    const handlePixelClick = useCallback((index) => {
       const newPixels = [...pixels];
       newPixels[index] = selectedColor;
       setPixels(newPixels);
       setIsSaved(false);
-    };
+  }, [selectedColor, pixels]);
+
+    const handleSave = async (e) => {
+      const query = {
+        option: JSON.stringify(pixels),
+      };
+
+      try {
+          const responseData = await apiFetch({
+            path: addQueryArgs( 'pad/v1/pixel-art' , query),
+            method: 'POST',
+          });
+          setIsSaved(true);
+      } catch (error) {
+          console.log(error);
+      }
+  };
 
     return (
         <div className="pixel-art-container">
@@ -44,7 +64,8 @@ const PixelArtAdmin = () => {
                     />
                 ))}
             </div>
-        </div>
+            <button onClick={handleSave} disabled={isSaved}>Save</button>
+          </div>
     );
 };
 
