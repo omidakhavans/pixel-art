@@ -1,6 +1,5 @@
 import { createRoot, useState, useCallback, useEffect } from '@wordpress/element';
-import { useSelect } from '@wordpress/data';
-import store from './util'; // Adjust the path as needed
+import usePixelArtData from './util';
 import apiFetch from '@wordpress/api-fetch';
 import { addQueryArgs } from '@wordpress/url';
 
@@ -8,6 +7,7 @@ const colors = ['#000000', '#FFFFFF', '#FF0000', '#00FF00', '#0000FF', '#FFFF00'
 
 const PixelArtAdmin = () => {
     const [selectedColor, setSelectedColor] = useState(colors[0]);
+    const { pixelArtData, isLoading, isError } = usePixelArtData();
     const [pixels, setPixels] = useState(Array(16 * 16).fill('transparent'));
     const [isSaved, setIsSaved] = useState(true);
 
@@ -18,7 +18,16 @@ const PixelArtAdmin = () => {
       setIsSaved(false);
   }, [selectedColor, pixels]);
 
+  useEffect(() => {
+    if (pixelArtData) {
+      const parsedData = JSON.parse(pixelArtData);
+      console.log(parsedData);
+        setPixels(parsedData);
+    }
+}, [pixelArtData]);
+
     const handleSave = async (e) => {
+      console.log(pixels);
       const query = {
         option: JSON.stringify(pixels),
       };
@@ -49,6 +58,8 @@ const PixelArtAdmin = () => {
             </div>
             <div className="pixel-art-grid">
                 {pixels.map((color, index) => (
+                  <>
+                    {console.log(pixels)}
                     <div
                         key={index}
                         className="pixel-art-pixel"
@@ -62,6 +73,8 @@ const PixelArtAdmin = () => {
                         tabIndex={0}
                         aria-label={`Pixel ${index + 1} color ${color}`}
                     />
+                                      </>
+
                 ))}
             </div>
             <button onClick={handleSave} disabled={isSaved}>Save</button>
