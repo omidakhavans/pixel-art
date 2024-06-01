@@ -4,6 +4,7 @@ namespace RBL\Pixel_Art\REST;
 
 use WP_REST_Server;
 use WP_REST_Request;
+use WP_Error;
 use RBL\Pixel_Art\REST\Base;
 
 /**
@@ -64,7 +65,7 @@ class PixelArt extends Base {
 	 * @return WP_REST_Response|WP_Error Response object on success, or WP_Error object on failure.
 	 */
 	public function save_pixel_art( $request ) {
-		$pixels = $request->get_json_params();
+		$pixels = $request->get_param( 'option' );
 
 		if ( ! $pixels ) {
 			return new WP_Error( 'invalid_payload', __( 'Invalid payload', 'rbl-pixel-art' ), array( 'status' => 400 ) );
@@ -72,7 +73,7 @@ class PixelArt extends Base {
 
 		update_option( 'pad_pixel_art', $pixels );
 
-		return rest_ensure_response( __( 'Pixel art saved', 'rbl-pixel-art' ) );
+		return rest_ensure_response( __( 'Pixel art saved', 'rbl-pixel-art' ), 200 );
 	}
 
 	/**
@@ -85,7 +86,6 @@ class PixelArt extends Base {
 	 */
 	public function get_pixel_art( $request ) {
 		$pixels = get_option( 'pad_pixel_art', array_fill( 0, 256, 'transparent' ) );
-		write_log($pixels);
 		return rest_ensure_response( $pixels, 200 );
 	}
 
@@ -99,8 +99,8 @@ class PixelArt extends Base {
 	public function get_collection_params(): array {
 		$query_params = array();
 
-		$query_params['code'] = array(
-			'description'       => __( 'Code.', 'rbl-pixel-art' ),
+		$query_params['option'] = array(
+			'description'       => __( 'option.', 'rbl-pixel-art' ),
 			'required'          => true,
 			'type'              => 'string',
 			'sanitize_callback' => 'sanitize_text_field',
