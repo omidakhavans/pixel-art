@@ -9,25 +9,32 @@ use RBL\Pixel_Art\REST\Base;
 
 /**
  * Class PixelArt
+ *
+ * Handles the REST API routes for the Pixel Art plugin.
+ *
+ * @package RBL\Pixel_Art\REST
+ * @since 1.0
  */
 class PixelArt extends Base {
 
 	/**
-	 * Rest base name.
-	 *
-	 * @since 1.0
-	 *
-	 * @var string
-	 */
+     * Rest base name.
+     *
+     * @since 1.0
+     *
+     * @var string
+     */
 	protected $rest_base = 'pixel-art';
 
 	/**
-	 * Registers route.
+     * Registers route.
+     *
+     * @since 1.0
+     *
+     * @see register_rest_route()
 	 *
-	 * @since 1.0
-	 *
-	 * @see register_rest_route()
-	 */
+	 * @return void
+     */
 	public function register_routes(): void {
 		register_rest_route(
 			$this->namespace,
@@ -51,19 +58,19 @@ class PixelArt extends Base {
 					'methods'             => WP_REST_Server::READABLE,
 					'callback'            => array( $this, 'get_pixel_art' ),
 					'permission_callback' => array( $this, 'permissions_check' ),
-				)
+				),
 			)
 		);
 	}
 
 	/**
-	 * Save pixel art data to the database.
-	 *
-	 * @since 1.0
-	 *
-	 * @param WP_REST_Request $request Full data about the request.
-	 * @return WP_REST_Response|WP_Error Response object on success, or WP_Error object on failure.
-	 */
+     * Save pixel art data to the database.
+     *
+     * @since 1.0
+     *
+     * @param WP_REST_Request $request Full data about the request.
+     * @return WP_REST_Response|WP_Error Response object on success, or WP_Error object on failure.
+     */
 	public function save_pixel_art( $request ) {
 		$pixels = $request->get_param( 'option' );
 
@@ -71,7 +78,7 @@ class PixelArt extends Base {
 			return new WP_Error( 'invalid_payload', __( 'Invalid payload', 'rbl-pixel-art' ), array( 'status' => 400 ) );
 		}
 
-		update_option( 'pad_pixel_art', $pixels );
+        $this->cache_handler->set( 'pad_pixel_art', $pixels );
 
 		return rest_ensure_response( __( 'Pixel art saved', 'rbl-pixel-art' ), 200 );
 	}
@@ -85,17 +92,17 @@ class PixelArt extends Base {
 	 * @return WP_REST_Response REST response.
 	 */
 	public function get_pixel_art( $request ) {
-		$pixels = get_option( 'pad_pixel_art', array_fill( 0, 256, 'transparent' ) );
+		$pixels = $this->cache_handler->get( 'pad_pixel_art', array_fill( 0, 256, 'transparent' ) );
 		return rest_ensure_response( $pixels, 200 );
 	}
 
 	/**
-	 * Retrieves the params for endpoint.
-	 *
-	 * @since 1.0
-	 *
-	 * @return array parameters.
-	 */
+     * Retrieves the params for endpoint.
+     *
+     * @since 1.0
+     *
+     * @return array Parameters.
+     */
 	public function get_collection_params(): array {
 		$query_params = array();
 
@@ -110,14 +117,14 @@ class PixelArt extends Base {
 	}
 
 	/**
-	 * Permission check.
-	 *
-	 * @param WP_REST_Request $request Full data about the request.
-	 *
-	 * @since 1.0
-	 *
-	 * @return true|WP_Error
-	 */
+     * Permission check.
+     *
+     * @param WP_REST_Request $request Full data about the request.
+     *
+     * @since 1.0
+     *
+     * @return true|WP_Error
+     */
 	public function permissions_check(
 		WP_REST_Request $request
 	) {
