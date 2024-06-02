@@ -6,25 +6,25 @@ import apiFetch from '@wordpress/api-fetch';
 
 const usePixelArtData = () => {
 	const [ pixelArtData, setPixelArtData ] = useState( null );
-	const [ isLoading, setIsLoading ] = useState( false );
-	const [ error, setError ] = useState( null );
+	const [ pixelArtDataLoading, setPixelArtDataLoading ] = useState( false );
+	const [ pixelArtDataError, setPixelArtDataError ] = useState( null );
 
 	useEffect( () => {
 		const fetchPixelArtData = async () => {
-			setIsLoading( true );
+			setPixelArtDataLoading( true );
 			try {
 				const response = await apiFetch( { path: 'pad/v1/pixel-art' } );
 				setPixelArtData( response );
-			} catch ( error ) {
-				setError( error );
+			} catch ( pixelArtDataError ) {
+				setPixelArtDataError( pixelArtDataError );
 			} finally {
-				setIsLoading( false );
+				setPixelArtDataLoading( false );
 			}
 		};
 
 		fetchPixelArtData();
 	}, [] );
-	return { pixelArtData, isLoading, error };
+	return { pixelArtData, pixelArtDataLoading, pixelArtDataError };
 };
 
 export default usePixelArtData;

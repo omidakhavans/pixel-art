@@ -2,12 +2,14 @@
  * WordPress dependencies
  */
 import { createRoot, useState, useCallback, useEffect } from '@wordpress/element';
+import apiFetch from '@wordpress/api-fetch';
+import { addQueryArgs } from '@wordpress/url';
+import { __ } from '@wordpress/i18n';
+import './admin.css';
 
 /**
  * Internal dependencies
  */
-import apiFetch from '@wordpress/api-fetch';
-import { addQueryArgs } from '@wordpress/url';
 import usePixelArtData from '../../util';
 
 /**
@@ -19,17 +21,11 @@ const colors = [ '#000000', '#FFFFFF', '#FF0000', '#00FF00', '#0000FF', '#FFFF00
  * Admin component for managing pixel art.
  */
 const PixelArtAdmin = () => {
-	// State for selected color
 	const [ selectedColor, setSelectedColor ] = useState( colors[ 0 ] );
-
-	// State for pixel art data, loading state, and error state
-	const { pixelArtData, isLoading, isError } = usePixelArtData();
-
-	// State for pixel grid
+	const { pixelArtData, pixelArtDataError } = usePixelArtData();
 	const [ pixels, setPixels ] = useState( Array( 16 * 16 ).fill( 'transparent' ) );
-
-	// State for save status
 	const [ isSaved, setIsSaved ] = useState( true );
+	const [ isNotification, setIsNotification ] = useState( false );
 
 	// State for drawing mode
 	const [ isDrawing, setIsDrawing ] = useState( false );
@@ -48,7 +44,11 @@ const PixelArtAdmin = () => {
 			const parsedData = JSON.parse( pixelArtData );
 			setPixels( parsedData );
 		}
-	}, [ pixelArtData ] );
+
+		if ( pixelArtDataError ) {
+			setIsNotification( pixelArtDataError );
+		}
+	}, [ pixelArtData, pixelArtDataError ] );
 
 	// Function to handle saving pixel data to the server
 	const handleSave = async () => {
@@ -129,7 +129,12 @@ const PixelArtAdmin = () => {
 					/>
 				) ) }
 			</div>
-			<button onClick={ handleSave } disabled={ isSaved }>Save</button>
+			<button onClick={ handleSave } disabled={ isSaved }>{ __( 'Save', 'rbl-pixel-art' ) }</button>
+      { isNotification && (
+				<div className="pixel-art-notification">
+					{ isNotification.message }
+				</div>
+			) }
 		</div>
 	);
 };
