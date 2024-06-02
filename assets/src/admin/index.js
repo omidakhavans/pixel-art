@@ -4,18 +4,13 @@
 import { createRoot, useState, useCallback, useEffect } from '@wordpress/element';
 import apiFetch from '@wordpress/api-fetch';
 import { addQueryArgs } from '@wordpress/url';
-import { __ } from '@wordpress/i18n';
-import './admin.css';
+import { __, sprintf } from '@wordpress/i18n';
 
 /**
  * Internal dependencies
  */
-import usePixelArtData from '../../util';
-
-/**
- * Available colors for pixel art.
- */
-const colors = [ '#000000', '#FFFFFF', '#FF0000', '#00FF00', '#0000FF', '#FFFF00', '#FF00FF', '#00FFFF', 'transparent' ];
+import {colors, usePixelArtData} from '../../util';
+import './admin.css';
 
 /**
  * Admin component for managing pixel art.
@@ -100,6 +95,8 @@ const PixelArtAdmin = () => {
 	// Render the component
 	return (
 		<div className="pixel-art-container">
+      <h3>{ __( 'Pixel Art Drawing', 'rbl-pixel-art' ) }</h3>
+      <span>{ __( 'Choose the color blew and start the drawing!', 'rbl-pixel-art' ) }</span>
 			<div className="pixel-art-colors">
 				{ colors.map( ( color, index ) => (
 					<button
@@ -107,7 +104,14 @@ const PixelArtAdmin = () => {
 						style={ { backgroundColor: color } }
 						className={ color === selectedColor ? 'selected' : '' }
 						onClick={ () => setSelectedColor( color ) }
-						aria-label={ `Select color ${ color }` }
+						aria-label={ sprintf(
+						/* translators: 1: Color name;*/
+							__(
+								'Select color %1$s',
+								'rbl-pixel-art',
+							),
+							color,
+						)}
 					/>
 				) ) }
 			</div>
@@ -125,7 +129,15 @@ const PixelArtAdmin = () => {
 						} }
 						role="button"
 						tabIndex={ 0 }
-						aria-label={ `Pixel ${ index + 1 } color ${ color }` }
+						aria-label={ sprintf(
+						/* translators: 1: Pixel offset; 2: Color name;*/
+							__(
+								'Pixel %1$s color %2$s',
+								'rbl-pixel-art',
+							),
+							index + 1,
+							color,
+						)}
 					/>
 				) ) }
 			</div>

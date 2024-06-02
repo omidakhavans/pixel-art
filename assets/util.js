@@ -4,7 +4,7 @@
 import { useState, useEffect } from '@wordpress/element';
 import apiFetch from '@wordpress/api-fetch';
 
-const usePixelArtData = () => {
+export const usePixelArtData = () => {
 	const [ pixelArtData, setPixelArtData ] = useState( null );
 	const [ pixelArtDataLoading, setPixelArtDataLoading ] = useState( false );
 	const [ pixelArtDataError, setPixelArtDataError ] = useState( null );
@@ -27,4 +27,8 @@ const usePixelArtData = () => {
 	return { pixelArtData, pixelArtDataLoading, pixelArtDataError };
 };
 
-export default usePixelArtData;
+
+/**
+ * Available colors for pixel art.
+ */
+export const colors = [ '#000000', '#FFFFFF', '#FF0000', '#00FF00', '#0000FF', '#FFFF00', '#FF00FF', '#00FFFF', 'transparent' ];
