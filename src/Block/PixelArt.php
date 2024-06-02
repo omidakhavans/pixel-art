@@ -60,7 +60,7 @@ class PixelArt implements Initializer {
 	 */
 	public static function render( array $attributes ): string {
 		$cache_handler = new CacheHandler( 'pixel_art_option' );
-		$pixels        = $cache_handler->get( 'pad_pixel_art', array_fill( 0, 256, 'transparent' ) );
+		$pixels        = $cache_handler->get( 'pixel_art_option', array_fill( 0, 256, 'transparent' ) );
 
 		if ( ! is_array( $pixels ) ) {
 			$decoded_pixels = json_decode( (string) $pixels, true );
