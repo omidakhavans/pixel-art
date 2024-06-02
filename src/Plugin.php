@@ -6,6 +6,7 @@
  * @copyright 2024 RBL
  * @license   GNU General Public License 3.0
  */
+
 namespace RBL\Pixel_Art;
 
 use RBL\Pixel_Art\REST\PixelArt as PixelArtREST;
