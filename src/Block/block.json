@@ -11,22 +11,20 @@
     "postId"
   ],
   "keywords": [
-    "country",
-    "card"
+    "pixel",
+    "rebel"
   ],
   "supports": {
     "align": true
   },
   "attributes": {
-    "dummy": {
-      "type": "string",
+    "size": {
+      "type": "number",
       "source": "text",
-      "default": "",
+      "default": 128,
       "selector": ".rbl-pixel"
     }
   },
   "textdomain": "rbl-pixel-art",
-  "editorScript": "file:./index.js",
-  "editorStyle": "file:./index.css",
-  "style": "file:./style-index.css"
+  "editorScript": "file:./index.js"
 }
