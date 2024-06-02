@@ -113,7 +113,7 @@ class PixelArt extends Base {
 
 		$this->cache_handler->set( 'pixel_art_option', $pixels );
 
-		return rest_ensure_response( __( 'Pixel art saved', 'rbl-pixel-art' ), 200 );
+		return rest_ensure_response( __( 'Pixel art saved', 'rbl-pixel-art' ) );
 	}
 
 	/**
@@ -136,7 +136,7 @@ class PixelArt extends Base {
 			return new WP_Error( 'invalid_pixel_art_data', __( 'Error encoding data to JSON.', 'rbl-pixel-art' ), array( 'status' => 400 ) );
 		}
 
-		return rest_ensure_response( $pixels, 200 );
+		return rest_ensure_response( $pixels );
 	}
 
 	/**
@@ -144,7 +144,7 @@ class PixelArt extends Base {
 	 *
 	 * @since 1.0
 	 *
-	 * @return array Parameters.
+	 * @return array<mixed> Parameters.
 	 */
 	public function get_collection_params(): array {
 		$query_params = array();

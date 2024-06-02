@@ -55,7 +55,7 @@ class PixelArt implements Initializer {
 	 *
 	 * @since 1.0
 	 *
- 	 * @param array<string,mixed> $attributes Block attributes.
+	 * @param array<string, string|int> $attributes Embed render attributes.
 	 * @return string Rendered block content.
 	 */
 	public static function render( array $attributes ): string {
