@@ -22,9 +22,9 @@ const sharedConfig = {
 		},
 	},
 	module: {
-    ...defaultConfig.module,
+		...defaultConfig.module,
 		rules: [
-      ...defaultConfig.module.rules,
+			...defaultConfig.module.rules,
 			{
 				test: /\.js$/,
 				exclude: /node_modules/,
@@ -34,7 +34,7 @@ const sharedConfig = {
 						presets: [ '@babel/preset-react' ],
 					},
 				},
-			}
+			},
 		],
 	},
 };

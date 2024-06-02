@@ -15,8 +15,8 @@ export const usePixelArtData = () => {
 			try {
 				const response = await apiFetch( { path: 'pad/v1/pixel-art' } );
 				setPixelArtData( response );
-			} catch ( pixelArtDataError ) {
-				setPixelArtDataError( pixelArtDataError );
+			} catch ( error ) {
+				setPixelArtDataError( error );
 			} finally {
 				setPixelArtDataLoading( false );
 			}
@@ -26,7 +26,6 @@ export const usePixelArtData = () => {
 	}, [] );
 	return { pixelArtData, pixelArtDataLoading, pixelArtDataError };
 };
-
 
 /**
  * Available colors for pixel art.

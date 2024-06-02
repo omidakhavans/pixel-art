@@ -96,7 +96,7 @@ const PixelArtAdmin = () => {
 	return (
 		<div className="pixel-art-container">
 			<h3>{ __( 'Pixel Art Drawing', 'rbl-pixel-art' ) }</h3>
-			<span>{ __( 'Choose the color blew and start the drawing!', 'rbl-pixel-art' ) }</span>
+			<span>{ __( 'Choose the color below and start the drawing!', 'rbl-pixel-art' ) }</span>
 			<div className="pixel-art-colors">
 				{ colors.map( ( color, index ) => (
 					<button
@@ -123,6 +123,11 @@ const PixelArtAdmin = () => {
 						style={ { backgroundColor: color } }
 						onClick={ () => handlePixelClick( index ) }
 						onMouseEnter={ () => handlePixelDrag( index ) }
+						onKeyDown={ ( e ) => {
+							if ( e.key === 'Enter' || e.key === ' ' ) {
+								handlePixelClick( index );
+							}
+						} }
 						onContextMenu={ ( e ) => {
 							e.preventDefault();
 							setSelectedColor( color );
@@ -135,7 +140,7 @@ const PixelArtAdmin = () => {
 								'Pixel %1$s color %2$s',
 								'rbl-pixel-art',
 							),
-							index + 1,
+							index,
 							color,
 						) }
 					/>
