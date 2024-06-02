@@ -10,9 +10,11 @@
 namespace RBL\Pixel_Art\REST;
 
 use WP_REST_Server;
+use WP_REST_Response;
 use WP_REST_Request;
 use WP_Error;
 use RBL\Pixel_Art\REST\Base;
+use RBL\Pixel_Art\CacheHandler;
 
 /**
  * Class PixelArt
@@ -32,6 +34,22 @@ class PixelArt extends Base {
 	 * @var string
 	 */
 	protected $rest_base = 'pixel-art';
+
+	/**
+	 * Cache handler instance.
+	 *
+	 * @var CacheHandler
+	 */
+	protected CacheHandler $cache_handler;
+
+	/**
+	 * Constructor.
+	 *
+	 * @since 1.0
+	 */
+	public function __construct() {
+		$this->cache_handler = new CacheHandler( 'pixel_art_option' );
+	}
 
 	/**
 	 * Registers route.
@@ -78,7 +96,7 @@ class PixelArt extends Base {
 	 * @param WP_REST_Request $request Full data about the request.
 	 * @return WP_REST_Response|WP_Error Response object on success, or WP_Error object on failure.
 	 */
-	public function save_pixel_art( $request ) {
+	public function save_pixel_art( WP_REST_Request $request ) {
 		$pixels = $request->get_param( 'option' );
 
 		if ( ! $pixels ) {
@@ -93,7 +111,7 @@ class PixelArt extends Base {
 			return new WP_Error( 'invalid_pixel_art_data', __( 'Error encoding option to JSON.', 'rbl-pixel-art' ), array( 'status' => 400 ) );
 		}
 
-		$this->cache_handler->set( 'pad_pixel_art', $pixels );
+		$this->cache_handler->set( 'pixel_art_option', $pixels );
 
 		return rest_ensure_response( __( 'Pixel art saved', 'rbl-pixel-art' ), 200 );
 	}
@@ -104,17 +122,17 @@ class PixelArt extends Base {
 	 * @since 1.0
 	 *
 	 * @param WP_REST_Request $request Full data about the request.
-	 * @return WP_REST_Response REST response.
+	 * @return WP_Error|WP_REST_Response REST response.
 	 */
-	public function get_pixel_art( $request ) {
-		$pixels = $this->cache_handler->get( 'pad_pixel_art', array_fill( 0, 256, 'transparent' ) );
+	public function get_pixel_art( WP_REST_Request $request ) {
+		$pixels = $this->cache_handler->get( 'pixel_art_option', array_fill( 0, 256, 'transparent' ) );
 
 		// Check if the retrieved data is a JSON string.
 		if ( ! is_string( $pixels ) || ! json_decode( $pixels ) ) {
 			$pixels = json_encode( $pixels );
 		}
 
-		if ( $pixels === false ) {
+		if ( false === $pixels ) {
 			return new WP_Error( 'invalid_pixel_art_data', __( 'Error encoding data to JSON.', 'rbl-pixel-art' ), array( 'status' => 400 ) );
 		}
 
