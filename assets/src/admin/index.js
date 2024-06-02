@@ -9,7 +9,7 @@ import { __, sprintf } from '@wordpress/i18n';
 /**
  * Internal dependencies
  */
-import {colors, usePixelArtData} from '../../util';
+import { colors, usePixelArtData } from '../../util';
 import './admin.css';
 
 /**
@@ -41,7 +41,7 @@ const PixelArtAdmin = () => {
 		}
 
 		if ( pixelArtDataError ) {
-			setIsNotification( pixelArtDataError );
+			setIsNotification( pixelArtDataError?.message );
 		}
 	}, [ pixelArtData, pixelArtDataError ] );
 
@@ -58,7 +58,7 @@ const PixelArtAdmin = () => {
 			} );
 			setIsSaved( true );
 		} catch ( error ) {
-			console.log( error );
+			setIsNotification( error?.message );
 		}
 	};
 
@@ -95,8 +95,8 @@ const PixelArtAdmin = () => {
 	// Render the component
 	return (
 		<div className="pixel-art-container">
-      <h3>{ __( 'Pixel Art Drawing', 'rbl-pixel-art' ) }</h3>
-      <span>{ __( 'Choose the color blew and start the drawing!', 'rbl-pixel-art' ) }</span>
+			<h3>{ __( 'Pixel Art Drawing', 'rbl-pixel-art' ) }</h3>
+			<span>{ __( 'Choose the color blew and start the drawing!', 'rbl-pixel-art' ) }</span>
 			<div className="pixel-art-colors">
 				{ colors.map( ( color, index ) => (
 					<button
@@ -111,7 +111,7 @@ const PixelArtAdmin = () => {
 								'rbl-pixel-art',
 							),
 							color,
-						)}
+						) }
 					/>
 				) ) }
 			</div>
@@ -137,14 +137,14 @@ const PixelArtAdmin = () => {
 							),
 							index + 1,
 							color,
-						)}
+						) }
 					/>
 				) ) }
 			</div>
 			<button onClick={ handleSave } disabled={ isSaved }>{ __( 'Save', 'rbl-pixel-art' ) }</button>
-      { isNotification && (
+			{ isNotification && (
 				<div className="pixel-art-notification">
-					{ isNotification.message }
+					{ isNotification }
 				</div>
 			) }
 		</div>

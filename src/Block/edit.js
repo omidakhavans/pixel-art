@@ -9,6 +9,7 @@ import {
 	PanelBody,
 	RangeControl,
 } from '@wordpress/components';
+import { __ } from '@wordpress/i18n';
 
 export default function Edit( { attributes, setAttributes } ) {
 	const { size } = attributes;
@@ -16,7 +17,7 @@ export default function Edit( { attributes, setAttributes } ) {
 	return (
 		<div { ...blockProps }>
 			<InspectorControls>
-				<PanelBody title="Pixel Art Settings">
+				<PanelBody title={ __( 'Pixel Art Settings', 'rbl-pixel-art' ) }>
 					<RangeControl
 						label="Size"
 						value={ size }
