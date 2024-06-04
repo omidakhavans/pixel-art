@@ -35,11 +35,11 @@ class PixelArt implements Initializer {
 	 *
 	 * @return void
 	 */
-	public static function register_block(): void {
+	public function register_block(): void {
 		register_block_type_from_metadata(
 			PIXEL_ART_PATH . '/build/block/',
 			array(
-				'render_callback' => array( self::class, 'render' ),
+				'render_callback' => array( $this, 'render' ),
 				'attributes'      => array(
 					'size' => array(
 						'type'    => 'number',
@@ -58,7 +58,7 @@ class PixelArt implements Initializer {
 	 * @param array<string, string|int> $attributes Embed render attributes.
 	 * @return string Rendered block content.
 	 */
-	public static function render( array $attributes ): string {
+	public function render( array $attributes ): string {
 		$cache_handler = new CacheHandler( 'pixel_art_option' );
 		$pixels        = $cache_handler->get( 'pixel_art_option', array_fill( 0, 256, 'transparent' ) );
 
