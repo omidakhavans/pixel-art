@@ -13,7 +13,7 @@ This WordPress plugin allows users to draw and display pixel art on their websit
 2. **Navigate to Plugin Directory:** Navigate to the plugin directory:
 
     ```bash
-    cd pixel-art-plugin
+    cd pixel-art
     ```
 
 3. **Install PHP Dependencies:** Install PHP dependencies using Composer:
