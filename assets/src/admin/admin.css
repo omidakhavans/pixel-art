@@ -1,0 +1,30 @@
+.pixel-art-container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.pixel-art-colors button {
+	width: 30px;
+	height: 30px;
+	margin: 2px;
+	border: 1px solid black;
+	cursor: pointer;
+}
+
+.pixel-art-colors button.selected {
+	border: 2px solid black;
+}
+
+.pixel-art-grid {
+	display: grid;
+	grid-template-columns: repeat(16, 20px);
+	grid-template-rows: repeat(16, 20px);
+}
+
+.pixel-art-pixel {
+	width: 20px;
+	height: 20px;
+	border: 1px solid #ccc;
+	cursor: pointer;
+}

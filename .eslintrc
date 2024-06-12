@@ -76,7 +76,7 @@
       }
     ],
     "jsdoc/check-indentation": "error",
-    "react/no-array-index-key": "warn",
+    "react/no-array-index-key": "off",
     "react/prop-types": "off",
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": [
@@ -90,9 +90,10 @@
     "@wordpress/i18n-text-domain": [
       "error",
       {
-        "allowedTextDomain": "xwp-country-card"
+        "allowedTextDomain": "rbl-pixel-art"
       }
     ],
-    "@wordpress/valid-sprintf": "error"
+    "@wordpress/valid-sprintf": "error",
+    "jsx-a11y/no-static-element-interactions": "off"
   }
 }

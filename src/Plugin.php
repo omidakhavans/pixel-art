@@ -6,10 +6,13 @@
  * @copyright 2024 RBL
  * @license   GNU General Public License 3.0
  */
+
 namespace RBL\Pixel_Art;
 
+use RBL\Pixel_Art\REST\PixelArt as PixelArtREST;
 use RBL\Pixel_Art\Interfaces\Initializer;
-use RBL\Pixel_Art\Block\PixelArt;
+use RBL\Pixel_Art\Block\PixelArt as PixelArtBlock;
+use RBL\Pixel_Art\Admin\Settings;
 
 /**
  * Class Plugin.
@@ -28,7 +31,9 @@ class Plugin {
 	 * @var array<mixed>
 	 */
 	const INITIALIZER = array(
-		'pixel.art.block' => PixelArt::class,
+		'admin.settings'  => Settings::class,
+		'pixel.art.rest'  => PixelArtREST::class,
+		'pixel.art.block' => PixelArtBlock::class,
 	);
 
 	/**

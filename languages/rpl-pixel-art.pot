@@ -1,0 +1,121 @@
+# Copyright (C) 2024 RebelCode
+# This file is distributed under the same license as the Pixel Art plugin.
+msgid ""
+msgstr ""
+"Project-Id-Version: Pixel Art 1.0.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/pixel-art\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2024-06-02T01:19:54+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.10.0\n"
+"X-Domain: rbl-pixel-art\n"
+
+#. Plugin Name of the plugin
+#: pixel-art.php
+msgid "Pixel Art"
+msgstr ""
+
+#. Description of the plugin
+#: pixel-art.php
+msgid "Draw and display pixel art on your website."
+msgstr ""
+
+#. Author of the plugin
+#: pixel-art.php
+msgid "RebelCode"
+msgstr ""
+
+#. Author URI of the plugin
+#: pixel-art.php
+msgid "https://rebelcode.com"
+msgstr ""
+
+#: src/REST/PixelArt.php:103
+msgid "Invalid payload"
+msgstr ""
+
+#: src/REST/PixelArt.php:111
+msgid "Error encoding option to JSON."
+msgstr ""
+
+#: src/REST/PixelArt.php:116
+msgid "Pixel art saved"
+msgstr ""
+
+#: src/REST/PixelArt.php:136
+msgid "Error encoding data to JSON."
+msgstr ""
+
+#: src/REST/PixelArt.php:153
+msgid "option."
+msgstr ""
+
+#: src/REST/PixelArt.php:178
+msgid "You don't have the permission"
+msgstr ""
+
+#: assets/src/admin/index.js:98
+#: build/admin/index.js:292
+#: build/admin/index.js:187
+msgid "Pixel Art Drawing"
+msgstr ""
+
+#: assets/src/admin/index.js:99
+#: build/admin/index.js:292
+#: build/admin/index.js:188
+msgid "Choose the color blew and start the drawing!"
+msgstr ""
+
+#. translators: 1: Color name;
+#: assets/src/admin/index.js:109
+#: build/admin/index.js:302
+#: build/admin/index.js:198
+msgid "Select color %1$s"
+msgstr ""
+
+#. translators: 1: Pixel offset; 2: Color name;
+#: assets/src/admin/index.js:134
+#: build/admin/index.js:322
+#: build/admin/index.js:223
+msgid "Pixel %1$s color %2$s"
+msgstr ""
+
+#: assets/src/admin/index.js:144
+#: build/admin/index.js:326
+#: build/admin/index.js:233
+msgid "Save"
+msgstr ""
+
+#: build/block/index.js:39
+#: src/Block/edit.js:20
+#: build/block/index.js:20
+msgid "Pixel Art Settings"
+msgstr ""
+
+#: build/block/block.json
+#: src/Block/block.json
+msgctxt "block title"
+msgid "Pixel art"
+msgstr ""
+
+#: build/block/block.json
+#: src/Block/block.json
+msgctxt "block description"
+msgid "Block rendering pixel art."
+msgstr ""
+
+#: build/block/block.json
+#: src/Block/block.json
+msgctxt "block keyword"
+msgid "pixel"
+msgstr ""
+
+#: build/block/block.json
+#: src/Block/block.json
+msgctxt "block keyword"
+msgid "rebel"
+msgstr ""
